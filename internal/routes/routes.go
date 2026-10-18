@@ -3,6 +3,7 @@ package routes
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -174,10 +175,7 @@ func FromIngress(u *unstructured.Unstructured) []Route {
 			middlewares = append(middlewares, Ref{Kind: "Middleware", Name: m})
 		}
 	}
-	var priority int64
-	if v := ann[annotationPriority]; v != "" {
-		fmt.Sscan(v, &priority)
-	}
+	priority, _ := strconv.ParseInt(strings.TrimSpace(ann[annotationPriority]), 10, 64)
 
 	tlsByHost := map[string]string{}
 	for _, t := range slice(u.Object, "spec", "tls") {
