@@ -42,3 +42,50 @@ changelog:
       - "^docs:"
       - "^test:"
       - "^chore:"
+
+krews:
+  - name: traefik
+    ids: [default]
+    homepage: https://github.com/c1sc0/kubectl-traefik
+    short_description: List and debug Traefik routes
+    description: |
+      Reads IngressRoute, Ingress and HTTPRoute objects served by Traefik
+      and shows them as one routing table with the Traefik rule for each.
+
+      Commands:
+        routes  list every Traefik route with rule, services, middlewares and TLS
+        doctor  find missing Services, ports, Middlewares, TLS secrets and
+                TLSOptions, cross-namespace references and failing HTTPRoutes
+
+      Works from the Kubernetes API only, no access to the Traefik API needed.
+    repository:
+      owner: c1sc0
+      name: krew-index
+      branch: main
+      git:
+        url: git@github.com:c1sc0/krew-index.git
+        private_key: '{{ envOrDefault "KREW_INDEX_DEPLOY_KEY" "" }}'
+    commit_msg_template: "chore: update {{ .ProjectName }} to {{ .Tag }}"
+
+brews:
+  - name: kubectl-traefik
+    ids: [default]
+    homepage: https://github.com/c1sc0/kubectl-traefik
+    description: kubectl plugin to list and debug Traefik routes
+    license: Apache-2.0
+    directory: Formula
+    repository:
+      owner: c1sc0
+      name: homebrew-tap
+      branch: main
+      git:
+        url: git@github.com:c1sc0/homebrew-tap.git
+        private_key: '{{ envOrDefault "HOMEBREW_TAP_DEPLOY_KEY" "" }}'
+    commit_msg_template: "chore: update {{ .ProjectName }} to {{ .Tag }}"
+    dependencies:
+      - name: kubernetes-cli
+        type: optional
+    install: |
+      bin.install "kubectl-traefik"
+    test: |
+      system "#{bin}/kubectl-traefik", "--version"

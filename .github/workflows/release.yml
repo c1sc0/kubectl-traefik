@@ -23,4 +23,5 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: rajatjindal/krew-release-bot@v0.0.47
+          KREW_INDEX_DEPLOY_KEY: ${{ secrets.KREW_INDEX_DEPLOY_KEY }}
+          HOMEBREW_TAP_DEPLOY_KEY: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}

@@ -61,17 +61,20 @@ References into namespaces outside the `-n` scope are reported as `info`, not er
 
 ## Install
 
-From krew (after the first release is accepted into the index):
+With krew, from the c1sc0 plugin index:
 
 ```sh
-kubectl krew install traefik
+kubectl krew index add c1sc0 https://github.com/c1sc0/krew-index.git
+kubectl krew install c1sc0/traefik
 ```
 
-From source:
+With Homebrew, on macOS or Linux:
 
 ```sh
-make install
+brew install c1sc0/tap/kubectl-traefik
 ```
+
+Or download a binary from [Releases](https://github.com/c1sc0/kubectl-traefik/releases) and put `kubectl-traefik` on your `PATH`.
 
 ## Permissions
 
