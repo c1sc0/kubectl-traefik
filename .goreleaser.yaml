@@ -50,14 +50,12 @@ krews:
     short_description: List and debug Traefik routes
     description: |
       Reads IngressRoute, Ingress and HTTPRoute objects served by Traefik
-      and shows them as one routing table with the Traefik rule for each.
-
-      Commands:
-        routes  list every Traefik route with rule, services, middlewares and TLS
-        doctor  find missing Services, ports, Middlewares, TLS secrets and
-                TLSOptions, cross-namespace references and failing HTTPRoutes
-
-      Works from the Kubernetes API only, no access to the Traefik API needed.
+      and shows them as one routing table, with the rule Traefik builds for
+      each route. It also reports broken references, such as missing
+      Services, Middlewares, TLS secrets and TLSOptions, cross-namespace
+      references that Traefik ignores, and HTTPRoutes that Traefik has not
+      accepted. It works from the Kubernetes API only, so no access to the
+      Traefik API or dashboard is needed.
     repository:
       owner: c1sc0
       name: krew-index
